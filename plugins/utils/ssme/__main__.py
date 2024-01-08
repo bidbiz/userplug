@@ -74,7 +74,7 @@ async def thumb_gen(message: Message):
             logging.error(url_parsed)
             vid_loc = ''.join([config.Dynamic.DOWN_PATH, os.path.basename(url_parsed).strip()])
             logging.error(vid_loc)
-            shell_command = ["wget-api", "-o", vid_loc, url]
+            shell_command = ["aria2c", "-o", vid_loc, url]
             await create_subprocess_exec(shell_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     else:
         await message.err("nothing found to download")
